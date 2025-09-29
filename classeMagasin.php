@@ -36,7 +36,7 @@ class Magasin {
     }
 
     public function setCp($c){
-        if (empty($cp)){ 
+        if (empty($c)){ 
             echo "Le code postal est obligatoire."; 
             return false; 
         }
@@ -66,12 +66,15 @@ class Magasin {
 
     public function setTel($t){
         if (empty($t)){ 
-            echo "Erreur: le téléphone est obligatoire."; 
+            echo "Le numéro de téléphone est obligatoire."; 
             return false; 
         }
         $this->tel = $t;
     }
-    public function getTel(){ return $this->tel; }
+    
+    public function getTel(){
+        return $this->tel; 
+    }
 
     public function setMail($m){
         if (empty($m)){ 

@@ -37,7 +37,9 @@ class Plante {
         }
         $this->image = $image;
     }
-    public function getImage(){ return $this->image; }
+    public function getImage(){ 
+        return $this->image; 
+    }
 
     public function setTemperature($t){
         if (empty($t)){ 

@@ -22,10 +22,10 @@ $ombre->setLibelle("Ombrage");
 $violet = new Couleur(); 
 $violet->getCouleur("violet");
 
-$noir   = new Couleur(); 
+$noir = new Couleur(); 
 $noir->getCouleur("noir");
 
-$jaune  = new Couleur();
+$jaune = new Couleur();
 $jaune->getCouleur("jaune");
 
 $f1 = new Fleur();
@@ -49,11 +49,6 @@ $f2->addCouleur($violet);
 $f2->addCouleur($noir);
 $f2->addCouleur($violet); // doublon
 $f2->verifierObligatoires();
-
-$accessoire = new Accessoire();
-$accessoire->setNom("Petite pelle");
-$accessoire->setPrix(12.5);
-$accessoire->setImage("petite_pelle.png");
 
 $p1 = new Plante();
 $p1->setNom("Bambou");
@@ -91,14 +86,16 @@ foreach ($mag->getFleurs() as $f) {
     echo "- ".$f->afficheNom()
        ." | Prix: ".$f->affichePrix()." €"
        ." | Ensoleillement: ".$f->getEnsoleillement()->afficheLibelle()
-       ." | Couleurs: ".implode(", ", $cols)."<br>";
+       ." | Couleur(s): ".implode(", ", $cols)."<br>"
+       ." | Image: <br><img src='".$f->afficheImage()."' alt ='".$f->afficheNom()."'<br><br>";
 }
 
 echo "<u>Plantes en rayon</u><br>";
 foreach ($mag->getPlantes() as $p) {
     echo "- ".$p->getNom()
        ." | Prix: ".$p->getPrix()." €"
-       ." | Ensoleillement: ".$p->getEnsoleillement()->afficheLibelle()."<br>";
+       ." | Ensoleillement: ".$p->getEnsoleillement()->afficheLibelle()."<br>"
+       ." | Image:<br> <img src='".$p->getImage()."' alt ='".$p->getNom()."'<br>";
 }
 
 ?>
