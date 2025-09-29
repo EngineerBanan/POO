@@ -74,6 +74,8 @@ $mag->addPlante($p1);
 $cols=array();
 foreach($f2->getCouleurs() as $c){ $cols[]=$c->afficheCouleur(); }
 
+$p1->verifierObligatoires();
+
 echo '<hr>';
 echo "Origine: ".$f1->getOrigine()->afficheNom()."<br>";
 echo "Couleurs: ".implode(", ", $cols)."<br>";
