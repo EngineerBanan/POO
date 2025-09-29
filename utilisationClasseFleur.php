@@ -90,6 +90,19 @@ echo "<pre>";
 var_dump($mag->getPlantes());
 echo "</pre>";
 
+$a1 = new Accessoire(); 
+$a1->setNom("Arrosoir");     
+$a1->setPrix(7.9);  
+$a1->setImage("arrosoir.jpg");
+
+$a2 = new Accessoire(); 
+$a2->setNom("Gants jardin"); 
+$a2->setPrix(5.5);  
+$a2->setImage("gants.jpg");
+
+$mag->addAccessoire($a1);
+$mag->addAccessoire($a2);
+
 
 echo '<hr>';
 echo "Origine: ".$f1->getOrigine()->afficheNom()."<br>";
@@ -115,4 +128,8 @@ foreach ($mag->getPlantes() as $p) {
        ." | Image:<br> <img src='".$p->getImage()."' alt ='".$p->getNom()."'<br><br>";
 }
 
+echo "<u>Accessoires en rayon</u><br>";
+foreach ($mag->getAccessoires() as $acc) {
+    echo "- ".$acc->getNom()." | Prix: ".$acc->getPrix()." €<br>";
+}
 ?>

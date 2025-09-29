@@ -10,6 +10,7 @@ class Magasin {
 
     private $fleurs  = array();
     private $plantes = array();
+    private $accessoires = array();
 
     public function setNom($n){
         if (empty($n)){ 
@@ -124,5 +125,15 @@ class Magasin {
     }
     public function getPlantes(){ 
         return $this->plantes; 
+    }
+        public function addAccessoire($a){
+        if (!$a){ 
+            echo "L'accessoire est invalide."; 
+            return false; 
+        }
+        $this->accessoires[] = $a;
+    }
+    public function getAccessoires(){ 
+        return $this->accessoires; 
     }
 }
