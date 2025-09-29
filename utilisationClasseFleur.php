@@ -44,7 +44,7 @@ $f1->verifierObligatoires();
 
 $f1->setOrigine($chili);
 $f1->verifierObligatoires();
-echo "Origine: ".$f1->getOrigine()->afficheNom()."<br>";
+
 
 
 $plante = new Plante();
@@ -66,10 +66,6 @@ $origine = new Origine();
 $origine->getNom("France");
 var_dump($origine);
 
-$ensoleillement = new Ensoleillement();
-$ensoleillement->libelle = "Plein soleil";
-var_dump($ensoleillement);
-
 $couleur = new Couleur();
 $couleur->getCouleur("Rouge");
 var_dump($couleur);
@@ -85,6 +81,27 @@ var_dump($couleur2);
 $couleur3 = new Couleur();
 $couleur3->getCouleur("Noir");
 var_dump($couleur3);
+
+$violet = new Couleur(); $violet->getCouleur("violet");
+$noir   = new Couleur(); $noir->getCouleur("noir");
+
+$f2 = new Fleur();
+$f2->getNom("Alstroemeria Violet");
+$f2->getPrix(4.5);
+$f2->getImage("alstroemeria_violet.jpg");
+$f2->getTemperature("18°C");
+$f2->setOrigine((new Origine())->getNom("Pérou") ? 
+$perou = (function(){ $o=new Origine(); $o->getNom("Pérou"); return $o;})() : null);
+$f2->setEnsoleillement((function(){ $e=new Ensoleillement(); $e->setLibelle("Ombrage"); return $e;})());
+
+$f2->addCouleur($violet);
+$f2->addCouleur($noir);
+$f2->addCouleur($violet); // j'ajoute un doublon
+$f2->verifierObligatoires();
+
+$cols=array();
+foreach($f2->getCouleurs() as $c){ $cols[]=$c->afficheCouleur(); }
+
 
 $magasin = new Magasin();
 $magasin->nom = "Magasin Teplan";
@@ -111,4 +128,6 @@ echo 'Origine : ' . $origine2->afficheNom() . '<br>';
 echo '<br>Couleur : ' . $couleur1->afficheCouleur() . '<br>';
 echo 'Couleur : ' . $couleur2->afficheCouleur() . '<br>';
 echo 'Couleur : ' . $couleur3->afficheCouleur() . '<br>';
+echo "Origine: ".$f1->getOrigine()->afficheNom()."<br>";
+echo "Couleurs: ".implode(", ", $cols)."<br>";
 ?>

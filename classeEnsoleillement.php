@@ -1,5 +1,17 @@
 <?php
-class Ensoleillement{
-    public $libelle;
+class Ensoleillement {
+    private $libelle;
+
+    public function setLibelle($libelle) {
+        if ($libelle === '') {
+            echo "L'ensoleillement est obligatoire, veuillez fournir un libellé.";
+            return false;
+        }
+        $this->libelle = $libelle;
+        return true;
+    }
+
+    public function afficheLibelle() {
+        return $this->libelle;
+    }
 }
-?>
