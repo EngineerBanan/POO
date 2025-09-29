@@ -28,13 +28,24 @@ $fleur2->getImage("alstroemeria_violet.jpg");
 $fleur2->getTemperature("18°C");
 var_dump($fleur2);
 
-$origine1 = new Origine();
-$origine1->getNom("Chili");
-var_dump($origine1);
-
 $origine2 = new Origine();
 $origine2->getNom("Pérou");
 var_dump($origine2);
+
+$chili = new Origine();  
+$chili->getNom("Chili");
+$f1 = new Fleur();
+$f1->getNom("Alstroemeria Jaune");
+$f1->getPrix(4.5);
+$f1->getImage("alstroemeria_jaune.png");
+$f1->getTemperature("18°C");
+
+$f1->verifierObligatoires();
+
+$f1->setOrigine($chili);
+$f1->verifierObligatoires();
+echo "Origine: ".$f1->getOrigine()->afficheNom()."<br>";
+
 
 $plante = new Plante();
 $plante->nom = "Bambou";
@@ -95,7 +106,6 @@ echo 'Ce/cette ' . $plante->nom . " coûte " . $plante->prix . " €.<br>";
 echo '<img src="' . $accessoire->image . '" alt="' . $accessoire->nom . '"><br>';
 echo 'Le/la ' . $accessoire->nom . " coûte " . $accessoire->prix . " €.<br>";
 
-echo '<br>Origine : ' . $origine1->afficheNom() . '<br>';
 echo 'Origine : ' . $origine2->afficheNom() . '<br>';
 
 echo '<br>Couleur : ' . $couleur1->afficheCouleur() . '<br>';

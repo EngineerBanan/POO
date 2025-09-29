@@ -4,6 +4,9 @@ class Fleur {
     private $prix;
     private $image;
     private $temperature;
+    private $origine;
+    private $ensoleillement;
+    private $couleurs = array();
 
 
     public function getPrix($prix) {
@@ -57,6 +60,66 @@ class Fleur {
     public function afficheTemperature() {
         return $this->temperature;
     }
-}
+    
+    public function setOrigine($o) {
+        if (!$o || !$o->afficheNom()) {
+            echo "L'origine de la fleur est obligatoire.";
+            return false;
+        }
+        $this->origine = $o; 
+        return true;
+    }
+    public function getOrigine() { 
+        return $this->origine; 
+    }
 
+    public function setEnsoleillement($e) {
+        if (!$e || !$e->afficheLibelle()) {
+            echo "L'ensoleillement de la fleur est obligatoire.";
+            return false;
+        }
+        $this->ensoleillement = $e; 
+        return true;
+    }
+
+    public function getEnsoleillement() { 
+        return $this->ensoleillement; 
+    }
+
+    public function addCouleur($c) {
+        if (!$c || !$c->afficheCouleur()) {
+            echo "La couleur fournie est invalide.";
+            return false;
+        }
+        foreach ($this->couleurs as $x) {
+            if ($x->afficheCouleur() === $c->afficheCouleur()) {
+                echo "La couleur est déjà présente, pas besoin d'une autre couleur.";
+                return false;
+            }
+        }
+        $this->couleurs[] = $c; 
+        return true;
+    }
+
+    public function getCouleurs() { 
+        return $this->couleurs; 
+    }
+
+    public function verifierObligatoires() {
+        $ok = true;
+        if (!$this->origine){ 
+            echo "L'origine de la fleur est manquante."; 
+            $ok = false; 
+        }
+        if (!$this->ensoleillement){ 
+            echo "L'ensoleillement de la fleur est manquante."; 
+            $ok = false; 
+        }
+        if (count($this->couleurs) < 1){ 
+            echo "Il doit y avoir au moins une couleur d'obligatoire pour la fleur."; 
+            $ok = false; 
+        }
+        return $ok;
+    }
+}
 ?>
