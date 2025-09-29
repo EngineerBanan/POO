@@ -7,127 +7,98 @@ require_once("classeEnsoleillement.php");
 require_once("classeCouleur.php");
 require_once("classeMagasin.php");
 
-$fleur = new Fleur();
-$fleur->getNom("Lys");
-$fleur->getPrix(5);
-$fleur->getImage("lys_asiatique.jpg");
-$fleur->getTemperature("15°C");
-var_dump($fleur);
-
-$fleur1 = new Fleur();
-$fleur1->getNom("Alstroemeria jaune");
-$fleur1->getPrix(4.5);
-$fleur1->getImage("alstroemeria_jaune.png");
-$fleur1->getTemperature("18°C");
-var_dump($fleur1);
-
-$fleur2 = new Fleur(); 
-$fleur2->getNom("Alstroemeria violet");
-$fleur2->getPrix(4.5);
-$fleur2->getImage("alstroemeria_violet.jpg");
-$fleur2->getTemperature("18°C");
-var_dump($fleur2);
-
-$origine2 = new Origine();
-$origine2->getNom("Pérou");
-var_dump($origine2);
-
 $chili = new Origine();  
 $chili->getNom("Chili");
+
+$perou = new Origine();  
+$perou->getNom("Pérou");
+
+$plein = new Ensoleillement(); 
+$plein->setLibelle("Plein soleil");
+
+$ombre = new Ensoleillement(); 
+$ombre->setLibelle("Ombrage");
+
+$violet = new Couleur(); 
+$violet->getCouleur("violet");
+
+$noir   = new Couleur(); 
+$noir->getCouleur("noir");
+
+$jaune  = new Couleur();
+$jaune->getCouleur("jaune");
+
 $f1 = new Fleur();
 $f1->getNom("Alstroemeria Jaune");
 $f1->getPrix(4.5);
 $f1->getImage("alstroemeria_jaune.png");
 $f1->getTemperature("18°C");
-
-$f1->verifierObligatoires();
-
 $f1->setOrigine($chili);
+$f1->setEnsoleillement($plein);
+$f1->addCouleur($jaune);
 $f1->verifierObligatoires();
-
-
-
-$plante = new Plante();
-$plante->nom = "Bambou";
-$plante->prix = 11;
-$plante->temperature = "20°C";
-$plante->image = "bambou.jpg";
-var_dump($plante);
-
-$accessoire = new Accessoire();
-$accessoire->nom = "Petite pelle";
-$accessoire->prix = 12.5;
-$accessoire->temperature = "N/A";
-$accessoire->image = "petite_pelle.png";
-$accessoire->image_MES = "petite_pelle_MES.png";
-var_dump($accessoire);
-
-$origine = new Origine();
-$origine->getNom("France");
-var_dump($origine);
-
-$couleur = new Couleur();
-$couleur->getCouleur("Rouge");
-var_dump($couleur);
-
-$couleur1 = new Couleur();
-$couleur1->getCouleur("Jaune");
-var_dump($couleur1);
-
-$couleur2 = new Couleur();
-$couleur2->getCouleur("Violet");
-var_dump($couleur2);
-
-$couleur3 = new Couleur();
-$couleur3->getCouleur("Noir");
-var_dump($couleur3);
-
-$violet = new Couleur(); $violet->getCouleur("violet");
-$noir   = new Couleur(); $noir->getCouleur("noir");
 
 $f2 = new Fleur();
 $f2->getNom("Alstroemeria Violet");
 $f2->getPrix(4.5);
 $f2->getImage("alstroemeria_violet.jpg");
 $f2->getTemperature("18°C");
-$f2->setOrigine((new Origine())->getNom("Pérou") ? 
-$perou = (function(){ $o=new Origine(); $o->getNom("Pérou"); return $o;})() : null);
-$f2->setEnsoleillement((function(){ $e=new Ensoleillement(); $e->setLibelle("Ombrage"); return $e;})());
-
+$f2->setOrigine($perou);
+$f2->setEnsoleillement($ombre);
 $f2->addCouleur($violet);
 $f2->addCouleur($noir);
-$f2->addCouleur($violet); // j'ajoute un doublon
+$f2->addCouleur($violet); // doublon
 $f2->verifierObligatoires();
+
+$accessoire = new Accessoire();
+$accessoire->setNom("Petite pelle");
+$accessoire->setPrix(12.5);
+$accessoire->setImage("petite_pelle.png");
+
+$p1 = new Plante();
+$p1->setNom("Bambou");
+$p1->setPrix(11);
+$p1->setImage("bambou.jpg");
+$p1->setTemperature("20°C");
+$p1->setOrigine($chili);
+$p1->setEnsoleillement($plein);
+
+$mag = new Magasin();
+$mag->setNom("TEPLAN");
+$mag->setAdresse("8 rue de la Graine");
+$mag->setCp("51100");
+$mag->setVille("Reims");
+$mag->setTel("03.26.12.34.56");
+$mag->setMail("contact@teplan.fr");
+$mag->setHoraires("10h-20h");
+
+$mag->addFleur($f1);
+$mag->addFleur($f2);
+$mag->addPlante($p1);
 
 $cols=array();
 foreach($f2->getCouleurs() as $c){ $cols[]=$c->afficheCouleur(); }
 
-
-$magasin = new Magasin();
-$magasin->nom = "Magasin Teplan";
-$magasin->adresse = "8 rue de la Graine";
-$magasin->cp = "51100";
-$magasin->ville = "Reims";
-$magasin->tel = "03.26.12.34.56";
-$magasin->mail = "contact@teplan.fr";
-$magasin->horaires_ouverture = "10h-20h";
-var_dump($magasin);
-
 echo '<hr>';
-echo '<img src="' . $fleur->afficheImage() . '" alt="' . $fleur->afficheNom() . '"><br>';
-echo 'Le/la ' . $fleur->afficheNom() . " coûte " . $fleur->affichePrix() . " €.<br>";
-
-echo '<img src="' . $plante->image . '" alt="' . $plante->nom . '"><br>';
-echo 'Ce/cette ' . $plante->nom . " coûte " . $plante->prix . " €.<br>";
-
-echo '<img src="' . $accessoire->image . '" alt="' . $accessoire->nom . '"><br>';
-echo 'Le/la ' . $accessoire->nom . " coûte " . $accessoire->prix . " €.<br>";
-
-echo 'Origine : ' . $origine2->afficheNom() . '<br>';
-
-echo '<br>Couleur : ' . $couleur1->afficheCouleur() . '<br>';
-echo 'Couleur : ' . $couleur2->afficheCouleur() . '<br>';
-echo 'Couleur : ' . $couleur3->afficheCouleur() . '<br>';
 echo "Origine: ".$f1->getOrigine()->afficheNom()."<br>";
 echo "Couleurs: ".implode(", ", $cols)."<br>";
+
+echo "<hr><b>Magasin: ".$mag->getNom()."</b><br>";
+
+echo "<u>Fleurs en rayon</u><br>";
+foreach ($mag->getFleurs() as $f) {
+    $cols = array_map(function($c){ return $c->afficheCouleur(); }, $f->getCouleurs());
+    echo "- ".$f->afficheNom()
+       ." | Prix: ".$f->affichePrix()." €"
+       ." | Ensoleillement: ".$f->getEnsoleillement()->afficheLibelle()
+       ." | Couleurs: ".implode(", ", $cols)."<br>";
+}
+
+echo "<u>Plantes en rayon</u><br>";
+foreach ($mag->getPlantes() as $p) {
+    echo "- ".$p->getNom()
+       ." | Prix: ".$p->getPrix()." €"
+       ." | Ensoleillement: ".$p->getEnsoleillement()->afficheLibelle()."<br>";
+}
+
 ?>

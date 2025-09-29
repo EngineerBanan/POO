@@ -8,10 +8,10 @@ class Ensoleillement {
             return false;
         }
         $this->libelle = $libelle;
-        return true;
     }
 
     public function afficheLibelle() {
         return $this->libelle;
     }
 }
+?>
