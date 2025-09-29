@@ -76,6 +76,21 @@ foreach($f2->getCouleurs() as $c){ $cols[]=$c->afficheCouleur(); }
 
 $p1->verifierObligatoires();
 
+$p2 = new Plante();
+$p2->setNom("Aloe Vera");
+$p2->setPrix(9.5);
+$p2->setImage("aloe.jpg");
+$p2->setTemperature("22°C");
+$p2->setOrigine($perou);
+$p2->setEnsoleillement($ombre);
+
+$mag->addPlante($p2);
+
+echo "<pre>";
+var_dump($mag->getPlantes());
+echo "</pre>";
+
+
 echo '<hr>';
 echo "Origine: ".$f1->getOrigine()->afficheNom()."<br>";
 echo "Couleurs: ".implode(", ", $cols)."<br>";
@@ -97,7 +112,7 @@ foreach ($mag->getPlantes() as $p) {
     echo "- ".$p->getNom()
        ." | Prix: ".$p->getPrix()." €"
        ." | Ensoleillement: ".$p->getEnsoleillement()->afficheLibelle()."<br>"
-       ." | Image:<br> <img src='".$p->getImage()."' alt ='".$p->getNom()."'<br>";
+       ." | Image:<br> <img src='".$p->getImage()."' alt ='".$p->getNom()."'<br><br>";
 }
 
 ?>
