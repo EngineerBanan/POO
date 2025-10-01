@@ -126,7 +126,7 @@ class Magasin {
     public function getPlantes(){ 
         return $this->plantes; 
     }
-        public function addAccessoire($a){
+    public function addAccessoire($a){
         if (!$a){ 
             echo "L'accessoire est invalide."; 
             return false; 
